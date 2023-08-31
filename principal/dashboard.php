@@ -47,7 +47,7 @@ else{
                         <div class="card stats-card border-0 shadow bg-dark ">
                             <div class="card-content">
                             
-                                <span class="card-title text-white">Totle Regd Employee</span>
+                                <span class="card-title text-white">Total Registered Employees</span>
                                 <span class="stats-counter text-white">
 <?php
 $sql = "SELECT id from tblemployees";
@@ -73,7 +73,8 @@ $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $dptcount=$query->rowCount();
-?>                            
+?>        
+<!-- Removed the card with for Total Number of Leaves Types and implemented Total requested leaves today-->
                                 <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($dptcount);?></span></span>
                             </div>
                             <div id="sparkline-line"></div>
@@ -82,22 +83,70 @@ $dptcount=$query->rowCount();
                     <div class="col s12 m12 col-md-4 l4">
                         <div class="card stats-card border-0 shadow bg-dark">
                             <div class="card-content">
-                                <span class="card-title text-white">Total leave Type</span>
+                                <span class="card-title text-white">Total requested leaves today</span>
                                     <?php
-$sql = "SELECT id from  tblleavetype";
+$sql = "SELECT id from  tblleaves WHERE DATE(PostingDate) = CURDATE()";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-$leavtypcount=$query->rowCount();
+$leavtodcount=$query->rowCount();
 ?>   
-                                <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($leavtypcount);?></span></span>
-                      
-                            </div>
-                            <div class="progress stats-card-progress">
-                                <div class="determinate" style="width: 70%"></div>
+<!-- added some functionality to know more about the leaves status instead of its type also removed progression bar-->
+                                <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($leavtodcount);?></span></span>   
                             </div>
                         </div>
                     </div>
+                <div class="col s12 m12 col-md-4 l4">
+                        <div class="card stats-card border-0 shadow bg-dark">
+                            <div class="card-content">   
+                                <span class="card-title text-white">Total approved leaves</span>
+                                    <?php
+$sql = "SELECT status from tblleaves WHERE status = 1";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$leavappcount=$query->rowCount();
+?>                      
+
+
+                                <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($leavappcount);?></span></span>   
+                            </div>
+                        </div>
+                </div>
+<!-- some more cards for more information about database to the dashboard-->
+                <div class="col s12 m12 col-md-4 l4">
+                        <div class="card stats-card border-0 shadow bg-dark">
+                            <div class="card-content">
+                                <span class="card-title text-white">Total rejected leaves</span>
+<!-- assumed that status 1 means approved while 2 means rejected and 0 means pending fix if assumptions are wrong-->
+                                <?php
+$sql = "SELECT status from tblleaves WHERE status = 2";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$leavrejcount=$query->rowCount();
+?>                      
+                                <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($leavrejcount);?></span></span>   
+
+                            </div>
+                        </div>
+                </div>
+                <div class="col s12 m12 col-md-4 l4">
+                        <div class="card stats-card border-0 shadow bg-dark">
+                            <div class="card-content">
+                                <span class="card-title text-white">Total pending leaves</span>
+                                <?php
+$sql = "SELECT status from tblleaves WHERE status = 0";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$leavpencount=$query->rowCount();
+?>                      
+                                <span class="stats-counter text-white"><span class="counter"><?php echo htmlentities($leavpencount);?></span></span>   
+
+                            </div>
+                        </div>
+                </div> 
                 </div>
                  
                     <div class="row no-m-t no-m-b">

@@ -78,7 +78,7 @@ CREATE TABLE `principal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
---Dump data for principal
+-- Table structure for table `principal`
 --
 INSERT INTO `principal` (`id`, `UserName`, `Password`, `updationDate`) VALUES
 (1, 'principal', '827ccb0eea8a706c4c34a16891f84e7b', '2020-07-07 09:30:42');

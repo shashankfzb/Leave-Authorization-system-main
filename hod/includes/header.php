@@ -5,7 +5,7 @@
 
                 <nav class="navbar navbar-expand-lg navbar-light py-3 bg-dark" >
                     <div class="nav-wrapper row">
-                  <marquee width="950px" direction="left" behavior="alternate" ><span style="font-size:38px; width=''font-weight:bold;color:white;font-family:'Californian FB', cursive;">GYAN GANGA INSTITUTE OF TECHNOLOGY AND SCIENCES</span>
+                  <marquee width="950px" direction="left" behavior="alternate" ><span style="font-size:38px;font-weight:bold;color:white;font-family:'Californian FB', cursive;">GYAN GANGA INSTITUTE OF TECHNOLOGY AND SCIENCES</span>
         </marquee>
           <div class="collapse navbar-collapse d-flex justify-content-center align-items-center" id="navbarNavAltMarkup">
           <div class="navbar-nav d-flex justify-content-center align-items-center">
