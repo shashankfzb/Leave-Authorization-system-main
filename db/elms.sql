@@ -53,12 +53,35 @@ CREATE TABLE `hod` (
   `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+
 --
--- Dumping data for table `admin`
+-- Dumping data for table `hod`
 --
+
+
 
 INSERT INTO `hod` (`id`, `UserName`, `Password`, `updationDate`) VALUES
 (1, 'preeti rai', '827ccb0eea8a706c4c34a16891f84e7b', '2020-07-07 09:30:42');
+
+
+
+--
+-- Table structure for table `principal`
+--
+CREATE TABLE `principal` (
+  `id` int(11) NOT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+--Dump data for principal
+--
+INSERT INTO `principal` (`id`, `UserName`, `Password`, `updationDate`) VALUES
+(1, 'principal', '827ccb0eea8a706c4c34a16891f84e7b', '2020-07-07 09:30:42');
 
 --
 -- Table structure for table `tbldepartments`

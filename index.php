@@ -74,7 +74,7 @@ else{
           <a class="nav-item text-white font-weight-bold nav-link ml-3" href="admin/">Registrar Login</a>
             <a class="nav-item text-white font-weight-bold nav-link ml-3" href="index.php">Faculty Login</a>
             <a class="nav-item text-white font-weight-bold nav-link ml-3" href="hod/">HOD login</a>
-            <a class="nav-item text-white font-weight-bold nav-link ml-3" href="hod/">Principal login</a>
+            <a class="nav-item text-white font-weight-bold nav-link ml-3" href="principal/">Principal login</a>
   
           </div>
           </div>
