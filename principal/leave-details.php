@@ -119,7 +119,7 @@ foreach($results as $result)
 
                                         <tr>
                                             <td style="font-size:16px;"> <b>Employe Name :</b></td>
-                                              <td><a href="editemployee.php?empid=<?php echo htmlentities($result->id);?>" target="_blank">
+                                              <td>
                                                 <?php echo htmlentities($result->FirstName." ".$result->LastName);?></a></td>
                                               <td style="font-size:16px;"><b>Emp Id :</b></td>
                                               <td><?php echo htmlentities($result->EmpId);?></td>

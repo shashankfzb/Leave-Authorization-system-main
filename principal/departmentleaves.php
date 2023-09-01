@@ -81,14 +81,15 @@ else{
                                  
                                     <tbody>
                                         
-<?php $did = $_GET['name'];
-$sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tbl employees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status,tblemployees.Department from tblleaves join tblemployees on tblleaves.empid=tblemployees.id WHERE tblemployees.Department = :did";
+<?php 
+$status= $_GET['name'];
+$sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id where tblemployees.Department=:status order by lid desc";
 $query = $dbh -> prepare($sql);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-$query->bindParam(':did',$did,PDO::PARAM_STR);
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
-echo $did;
+echo $status;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
@@ -97,7 +98,7 @@ foreach($results as $result)
 
                                         <tr>
                                             <td> <b><?php echo htmlentities($cnt);?></b></td>
-                                              <td><a href="editemployee.php?empid=<?php echo htmlentities($result->id);?>" target="_blank"><?php echo htmlentities($result->FirstName." ".$result->LastName);?>(<?php echo htmlentities($result->EmpId);?>)</a></td>
+                                              <td><?php echo htmlentities($result->FirstName." ".$result->LastName);?>(<?php echo htmlentities($result->EmpId);?>)</a></td>
                                             <td><?php echo htmlentities($result->LeaveType);?></td>
                                             <td><?php echo htmlentities($result->PostingDate);?></td>
 <td><?php $stats=$result->Status;

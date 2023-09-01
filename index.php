@@ -70,7 +70,7 @@ else{
           </button>
           <div class="collapse navbar-collapse d-flex justify-content-center align-items-center" id="navbarNavAltMarkup">
           <div class="navbar-nav d-flex justify-content-center align-items-center">
-          <!--   <a class="nav-item text-white font-weight-bold nav-link active ml-3" href="#">Home <span class="sr-only">(current)</span></a> -->
+          <!--<a class="nav-item text-white font-weight-bold nav-link active ml-3" href="#">Home <span class="sr-only">(current)</span></a> -->
           <a class="nav-item text-white font-weight-bold nav-link ml-3" href="admin/">Registrar Login</a>
             <a class="nav-item text-white font-weight-bold nav-link ml-3" href="index.php">Faculty Login</a>
             <a class="nav-item text-white font-weight-bold nav-link ml-3" href="hod/">HOD login</a>
