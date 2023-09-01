@@ -119,8 +119,14 @@ $leavappcount=$query->rowCount();
                             <div class="card-content">
                                 <span class="card-title text-white">Total rejected leaves</span>
 <!-- assumed that status 1 means approved while 2 means rejected and 0 means pending fix if assumptions are wrong-->
-                                <?php
-$sql = "SELECT status from tblleaves WHERE status = 2";
+<!--Status 0 -> Waiting for response
+    Status 1 -> Approved by HOD as well as Principal 
+    Status 2 -> Not Approved by HOD
+    Status 3 -> Approved by HOD
+    Status 4 -> Not Approved by Principal
+-->
+<?php
+$sql = "SELECT status from tblleaves WHERE status = 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -136,7 +142,7 @@ $leavrejcount=$query->rowCount();
                             <div class="card-content">
                                 <span class="card-title text-white">Total pending leaves</span>
                                 <?php
-$sql = "SELECT status from tblleaves WHERE status = 0";
+$sql = "SELECT status from tblleaves WHERE status = 3";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
