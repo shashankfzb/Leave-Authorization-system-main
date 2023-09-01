@@ -114,7 +114,7 @@ if($stats==1){
      <?php }if($stats==3)  { ?>
      <span style="color: blue">Approved by HOD</span>
      <?php } if($stats==4)  { ?>
-     <span style="color: blue">Not Approved Principal</span>
+     <span style="color: blue">Not Approved by Principal</span>
      <?php } ?>
 
 

@@ -157,16 +157,14 @@ foreach($results as $result)
 if($stats==1){
 ?>
 <span style="color: green">Approved</span>
- <?php } if($stats==5)  { ?>
-<span style="color: red">Not Approved by HOD</span>
-<?php } if($stats==0)  { ?>
+ <?php } if($stats==0)  { ?>
  <span style="color: blue">Waiting for Approval</span>
  <?php }if($stats==3)  { ?>
  <span style="color: blue">Approved by HOD</span>
  <?php } if($stats==4)  { ?>
  <span style="color: red">Not Approved by Principal</span>
  <?php } if($stats==2)  { ?>
- <span style="color: red">Not Approved</span>
+ <span style="color: red">Not Approved by HOD</span>
  <?php } ?>
 </td>
 </tr>

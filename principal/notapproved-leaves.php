@@ -84,7 +84,7 @@ else{
                                     </thead>
                                  
                                     <tbody>
-<?php 
+<?php
 $status=2;
 $sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id where tblleaves.Status=:status order by lid desc";
 $query = $dbh -> prepare($sql);
@@ -105,13 +105,57 @@ foreach($results as $result)
                                             <td><?php echo htmlentities($result->PostingDate);?></td>
                                                                        <td><?php $stats=$result->Status;
 if($stats==1){
-                                             ?>
-                                                 <span style="color: green">Approved</span>
-                                                 <?php } if($stats==2)  { ?>
-                                                <span style="color: red">Not Approved</span>
-                                                 <?php } if($stats==0)  { ?>
- <span style="color: blue">waiting for approval</span>
- <?php } ?>
+    ?>
+    <span style="color: green">Approved</span>
+     <?php } if($stats==2)  { ?>
+    <span style="color: red">Not Approved</span>
+    <?php } if($stats==0)  { ?>
+     <span style="color: blue">waiting for approval</span>
+     <?php }if($stats==3)  { ?>
+     <span style="color: blue">Approved by HOD</span>
+     <?php } if($stats==4)  { ?>
+     <span style="color: blue">Not Approved by Principal</span>
+     <?php } ?>
+
+
+                                             </td>
+
+          <td>
+           <td><a href="leave-details.php?leaveid=<?php echo htmlentities($result->lid);?>" class="waves-effect waves-light btn blue m-b-xs"  > View Details</a></td>
+                                    </tr>
+                                         <?php $cnt++;} }?>
+<?php
+$status=4;
+$sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id where tblleaves.Status=:status order by lid desc";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{         
+      ?>  
+
+                                        <tr>
+                                            <td> <b><?php echo htmlentities($cnt);?></b></td>
+                                              <td><a href="editemployee.php?empid=<?php echo htmlentities($result->id);?>" target="_blank"><?php echo htmlentities($result->FirstName." ".$result->LastName);?>(<?php echo htmlentities($result->EmpId);?>)</a></td>
+                                            <td><?php echo htmlentities($result->LeaveType);?></td>
+                                            <td><?php echo htmlentities($result->PostingDate);?></td>
+                                                                       <td><?php $stats=$result->Status;
+if($stats==1){
+    ?>
+    <span style="color: green">Approved</span>
+     <?php } if($stats==2)  { ?>
+    <span style="color: red">Not Approved</span>
+    <?php } if($stats==0)  { ?>
+     <span style="color: blue">waiting for approval</span>
+     <?php }if($stats==3)  { ?>
+     <span style="color: blue">Approved by HOD</span>
+     <?php } if($stats==4)  { ?>
+     <span style="color: red">Not Approved by Principal</span>
+     <?php } ?>
 
 
                                              </td>
