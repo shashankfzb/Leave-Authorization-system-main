@@ -157,14 +157,16 @@ foreach($results as $result)
 if($stats==1){
 ?>
 <span style="color: green">Approved</span>
- <?php } if($stats==2)  { ?>
+ <?php } if($stats==5)  { ?>
 <span style="color: red">Not Approved by HOD</span>
 <?php } if($stats==0)  { ?>
- <span style="color: blue">waiting for approval</span>
+ <span style="color: blue">Waiting for Approval</span>
  <?php }if($stats==3)  { ?>
  <span style="color: blue">Approved by HOD</span>
  <?php } if($stats==4)  { ?>
- <span style="color: blue">Not Approved by Principal</span>
+ <span style="color: red">Not Approved by Principal</span>
+ <?php } if($stats==2)  { ?>
+ <span style="color: red">Not Approved</span>
  <?php } ?>
 </td>
 </tr>
@@ -193,7 +195,7 @@ echo htmlentities($result->AdminRemarkDate);
 ?></td>
  </tr>
 <?php 
-if($stats==0)
+if($stats==0 || $stats==1 || $stats==2 || $stats==3 || $stats==4)
 {
 
 ?>
@@ -206,8 +208,8 @@ if($stats==0)
         <h4>Leave take action</h4>
           <select class="browser-default" name="status" required="">
                                             <option value="">Choose your option</option>
-                                            <option value="3">Approved</option>
-                                            <option value="2">Not Approved</option>
+                                            <option value="1">Approved</option>
+                                            <option value="4">Not Approved</option>
                                         </select></p>
                                         <p><textarea id="textarea1" name="description" class="materialize-textarea" name="description" placeholder="Description" length="500" maxlength="500"></textarea></p>
     </div>

@@ -112,14 +112,19 @@ echo htmlentities('waiting for approval');
 
                                             ?></td>
                                                                                  <td><?php $stats=$result->Status;
-if($stats==1){
-                                             ?>
-                                                 <span style="color: green">Approved</span>
-                                                 <?php } if($stats==2)  { ?>
-                                                <span style="color: red">Not Approved</span>
-                                                 <?php } if($stats==0)  { ?>
- <span style="color: blue">waiting for approval</span>
- <?php } ?>
+                                                                                 if($stats==1){
+                                                                                    ?>
+                                                                                    <span style="color: green">Approved</span>
+                                                                                     <?php } if($stats==2)  { ?>
+                                                                                    <span style="color: red">Not Approved by HOD</span>
+                                                                                    <?php } if($stats==0)  { ?>
+                                                                                     <span style="color: blue">waiting for approval</span>
+                                                                                     <?php }if($stats==3)  { ?>
+                                                                                     <span style="color: blue">Approved by HOD</span>
+                                                                                     <?php } if($stats==4)  { ?>
+                                                                                     <span style="color: red">Not Approved by Principal</span>
+                                                                                     <?php } ?>
+
 
                                              </td>
           

@@ -185,10 +185,10 @@ CREATE TABLE `tblleavetype` (
 -- Dumping data for table `tblleavetype`
 --
 
--- INSERT INTO `tblleavetype` (`id`, `LeaveType`, `Description`, `CreationDate`) VALUES
--- (1, 'Casual Leave', 'Casual Leave ', '2017-11-01 12:07:56'),
--- (2, 'Medical Leave test', 'Medical Leave  test', '2017-11-06 13:16:09'),
--- (3, 'Restricted Holiday(RH)', 'Restricted Holiday(RH)', '2017-11-06 13:16:38');
+INSERT INTO `tblleavetype` (`id`, `LeaveType`, `Description`, `CreationDate`) VALUES
+(1, 'Casual Leave', 'Casual Leave ', '2017-11-01 12:07:56'),
+(2, 'Medical Leave test', 'Medical Leave  test', '2017-11-06 13:16:09'),
+(3, 'Restricted Holiday(RH)', 'Restricted Holiday(RH)', '2017-11-06 13:16:38');
 
 --
 -- Indexes for dumped tables
