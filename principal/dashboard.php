@@ -63,11 +63,12 @@ $empcount=$query->rowCount();
                         </div>
                     </div>
                         <div class="col s12 m12 col-md-4 l4">
+
                         <div class="card stats-card border-0 shadow bg-dark">
-                            <div class="card-content">
+                            <div class="card-content" onclick="location.href='?a=all'" style="cursor:pointer;">
                             
-                                <span class="card-title text-white">Total Departments </span>
-    <?php
+                                <span class="card-title text-white">Total Departments</span>
+<?php
 $sql = "SELECT id from tbldepartments";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -98,7 +99,7 @@ $leavtodcount=$query->rowCount();
                     </div>
                 <div class="col s12 m12 col-md-4 l4">
                         <div class="card stats-card border-0 shadow bg-dark">
-                            <div class="card-content">   
+                            <div class="card-content" onclick="location.href='../principal/approvedleave-history.php'" style="cursor:pointer;">   
                                 <span class="card-title text-white">Total approved leaves</span>
                                     <?php
 $sql = "SELECT status from tblleaves WHERE status = 1";
@@ -116,7 +117,7 @@ $leavappcount=$query->rowCount();
 <!-- some more cards for more information about database to the dashboard-->
                 <div class="col s12 m12 col-md-4 l4">
                         <div class="card stats-card border-0 shadow bg-dark">
-                            <div class="card-content">
+                            <div class="card-content" onclick="location.href='../principal/notapproved-leaves.php'" style="cursor:pointer;">
                                 <span class="card-title text-white">Total rejected leaves</span>
 <!-- assumed that status 1 means approved while 2 means rejected and 0 means pending fix if assumptions are wrong-->
 <!--Status 0 -> Waiting for response
@@ -139,10 +140,10 @@ $leavrejcount=$query->rowCount();
                 </div>
                 <div class="col s12 m12 col-md-4 l4">
                         <div class="card stats-card border-0 shadow bg-dark">
-                            <div class="card-content">
+                            <div class="card-content" onclick="location.href='../principal/pending-leavehistory.php'" style="cursor:pointer;">
                                 <span class="card-title text-white">Total pending leaves</span>
                                 <?php
-$sql = "SELECT status from tblleaves WHERE status = 3";
+$sql = "SELECT status from tblleaves WHERE status = 3 or status = 0";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -160,7 +161,7 @@ $leavpencount=$query->rowCount();
                             <div class="card invoices-card border-0 shadow">
                                 <div class="card-content">
                                  
-                                    <span class="card-title text-success">Latest Leave Applications</span>
+                                    <span class="card-title text-success">Today Leave Applications - <?php if($_GET['a']=="all"){echo "All Departments";} else {echo $_GET['a'];}  ?></span>
                              <table id="example" class="display responsive-table bg-transparent">
                                     <thead>
                                         <tr>
@@ -173,10 +174,47 @@ $leavpencount=$query->rowCount();
                                             <th align="center" class="text-danger text-center" >Action</th>
                                         </tr>
                                     </thead>
-                                 
-                                    <tbody>
-<?php $sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id order by lid desc limit 6";
+                                    <div class="input-field col m6 s12" style="text-align:center;">
+
+<script type="text/javascript">
+    function updateSelectedOption(){
+        a = document.getElementById('myselect').value;
+        location.href = "?a="+a;
+    }
+</script>
+
+
+<select id="myselect" name="department" autocomplete="off" onchange="updateSelectedOption()">
+
+<!--can somebody fix the issue where current selected departments gets on top-->
+<option value="all">All Department...</option>
+<?php $sql = "SELECT DepartmentName from tbldepartments";
 $query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{   ?>                                            
+<option value="<?php echo htmlentities($result->DepartmentName);?>"><?php echo htmlentities($result->DepartmentName);?></option>
+<?php }} ?>
+</select>
+</div>                       
+
+
+<tbody>
+<?php
+$status = $_GET['a'];
+if($status == "all"){
+    $sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id where DATE(tblleaves.PostingDate) = CURRENT_DATE order by lid desc limit 6";
+    $query = $dbh -> prepare($sql);
+}
+else{
+    $sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id where tblemployees.Department=:status and DATE(tblleaves.PostingDate) = CURRENT_DATE order by lid desc;";
+    $query = $dbh -> prepare($sql);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+}
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
