@@ -120,8 +120,11 @@ $leavtypcount=$query->rowCount();
                                     </thead>
                                  
                                     <tbody>
-<?php $sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status from tblleaves join tblemployees on tblleaves.empid=tblemployees.id order by lid desc limit 6";
+<?php 
+$status= $_GET['name'];
+$sql = "SELECT tblleaves.id as lid,tblemployees.FirstName,tblemployees.LastName,tblemployees.EmpId,tblemployees.id,tblleaves.LeaveType,tblleaves.PostingDate,tblleaves.Status,hod.Department,hod.UserName from tblleaves join tblemployees on tblleaves.empid=tblemployees.id join hod on tblemployees.Department = hod.Department WHERE hod.UserName =:status order by lid desc";
 $query = $dbh -> prepare($sql);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
