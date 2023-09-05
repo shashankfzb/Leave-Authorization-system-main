@@ -13,7 +13,8 @@
                     </div>
             
                 <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="dashboard.php"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+                    <?php $status = $_GET['name'] ?>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="dashboard.php?name=<?php echo $status ?>"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
                     <!-- <li class="no-padding">
                         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Department<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
                         <div class="collapsible-body">
@@ -39,20 +40,20 @@
                         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">desktop_windows</i>Leave Management<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="leaves.php">All Leaves </a></li>
-                                <li><a href="pending-leavehistory.php">Pending Leaves </a></li>
-                                <li><a href="approvedleave-history.php">Approved Leaves</a></li>
-                                  <li><a href="notapproved-leaves.php">Not Approved Leaves</a></li>
+                                <li><a href="leaves.php?name=<?php echo $status ?>">All Leaves </a></li>
+                                <li><a href="pending-leavehistory.php?name=<?php echo $status ?>">Pending Leaves </a></li>
+                                <li><a href="approvedleave-history.php?name=<?php echo $status ?>">Approved Leaves</a></li>
+                                  <li><a href="notapproved-leaves.php?name=<?php echo $status ?>">Not Approved Leaves</a></li>
        
                             </ul>
                         </div>
                     </li>
 
 
-  <li class="no-padding"><a class="waves-effect waves-grey" href="changepassword.php"><i class="material-icons">settings_input_svideo</i>Change Password</a></li>
+  <li class="no-padding"><a class="waves-effect waves-grey" href="changepassword.php?name=<?php echo $status ?>"><i class="material-icons">settings_input_svideo</i>Change Password</a></li>
 
                         <li class="no-padding">
-                                <a class="waves-effect waves-grey" href="logout.php"><i class="material-icons">exit_to_app</i>Log Out</a>
+                                <a class="waves-effect waves-grey" href="logout.php?name=<?php echo $status ?>"><i class="material-icons">exit_to_app</i>Log Out</a>
                             </li>  
                  
 
