@@ -50,7 +50,7 @@ CREATE TABLE `hod` (
   `id` int(11) NOT NULL,
   `UserName` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
-  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
+  `Department` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -62,8 +62,8 @@ CREATE TABLE `hod` (
 
 
 
-INSERT INTO `hod` (`id`, `UserName`, `Password`, `updationDate`) VALUES
-(1, 'preeti rai', '827ccb0eea8a706c4c34a16891f84e7b', '2020-07-07 09:30:42');
+INSERT INTO `hod` (`id`, `UserName`, `Password`, `Department`) VALUES
+(1, 'preeti rai', '827ccb0eea8a706c4c34a16891f84e7b', '');
 
 
 
